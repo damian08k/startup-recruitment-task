@@ -6,7 +6,7 @@ const getPosts = async () => {
     const response = await fetch(API_URL);
 
     if (!response.ok) {
-        throw new Error("Fetched Posts error!");
+        throw new Error("Something's wrong with the data. I could not fetch the data from that resource.");
     }
 
     const posts = await response.json();

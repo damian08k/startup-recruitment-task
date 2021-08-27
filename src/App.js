@@ -2,6 +2,8 @@ import React from "react";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
+import { Box } from "@material-ui/core";
+
 import Posts from "./components/Posts/Posts";
 
 const queryClient = new QueryClient({
@@ -18,7 +20,9 @@ const queryClient = new QueryClient({
 const App = () => {
     return (
         <QueryClientProvider client={queryClient}>
-            <Posts />
+            <Box width="100%" display="flex" justifyContent="center">
+                <Posts />
+            </Box>
         </QueryClientProvider>
     );
 };
