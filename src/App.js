@@ -13,6 +13,8 @@ import Error from "./components/Error/Error";
 import Posts from "./components/Posts/Posts";
 import PostDetails from "./components/Posts/PostDetails/PostDetails";
 
+import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
+
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
@@ -27,10 +29,11 @@ const queryClient = new QueryClient({
 const App = () => {
     return (
         <QueryClientProvider client={queryClient}>
-            <Box width="100%" display="flex" justifyContent="center">
+            <Box width="100%" display="flex" justifyContent="center" flexWrap="wrap">
                 <PostIDProvider>
                     <PostInfoProvider>
                         <Router>
+                            <Breadcrumb />
                             <Switch>
                                 <Route exact path="/">
                                     <Redirect to="/posts" />
