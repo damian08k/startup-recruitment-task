@@ -1,19 +1,16 @@
 import React from "react";
-
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import PostIDProvider from "./context/PostIDContext";
 import PostInfoProvider from "./context/PostInfoContext";
 
-import { Box } from "@material-ui/core";
-
 import Error from "./components/Error/Error";
 import Posts from "./components/Posts/Posts";
 import PostDetails from "./components/Posts/PostDetails/PostDetails";
-
 import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
+
+import { Box } from "@material-ui/core";
 
 const queryClient = new QueryClient({
     defaultOptions: {

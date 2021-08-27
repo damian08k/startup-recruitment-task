@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 
-const API_URL = "https://jsonplaceholder.typicode.com/posts";
+import API_URL from "../API_URL";
 
 const getPosts = async () => {
     const response = await fetch(API_URL);
@@ -9,9 +9,9 @@ const getPosts = async () => {
         throw new Error("Something's wrong with the data. I could not fetch the data from that resource.");
     }
 
-    const posts = await response.json();
+    const postsList = await response.json();
 
-    return posts;
+    return postsList;
 };
 
 const useFetchedPosts = () => useQuery("posts", getPosts);

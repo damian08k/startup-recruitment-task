@@ -1,34 +1,44 @@
-// https://codesandbox.io/s/github/tannerlinsley/react-query/tree/master/examples/custom-hooks?file=/src/index.js:2312-2319
-// https://codesandbox.io/s/great-ellis-4d0lc?file=/src/Breadcrumbs.jsx
-
 import { useContext } from "react";
+import { withRouter } from "react-router";
+
 import { PostInfoContext } from "../../context/PostInfoContext";
 
 import { Breadcrumbs, Link, Typography } from "@material-ui/core";
-import { withRouter } from "react-router";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
 import useBreadcrumbStyles from "./useBreadcrumbStyles";
 
 const Breadcrumb = props => {
-    const { breadcrumbStyles } = useBreadcrumbStyles();
-    const { postName } = useContext(PostInfoContext);
+    const { breadcrumbStyles, navigationStyles } = useBreadcrumbStyles();
+
+    const { postTitle } = useContext(PostInfoContext);
+
     const {
         history,
         location: { pathname },
     } = props;
-    const pathnames = pathname.split("/").filter(x => x);
+
+    const splittedPath = pathname.split("/").filter(path => path);
+
+    const breadcrumbSeparatar = <NavigateNextIcon fontSize="small" />;
+
+    const handlePagesLinkClicked = () => history.push("/posts");
+
+    const showPostsPageOnBreadcrumb =
+        splittedPath.length > 0 ? (
+            <Link onClick={handlePagesLinkClicked} className={navigationStyles}>
+                Posts
+            </Link>
+        ) : (
+            <Typography>Posts</Typography>
+        );
+
+    const showPostTitleOnBreadcrumb = splittedPath.length > 1 && <Typography>{postTitle}</Typography>;
 
     return (
-        <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} className={breadcrumbStyles}>
-            {pathnames.length > 0 ? (
-                <Link onClick={() => history.push("/posts")}>Posts</Link>
-            ) : (
-                <Typography> Posts </Typography>
-            )}
-
-            {console.log(pathnames)}
-            {pathnames.length > 1 && <Typography>{postName}</Typography>}
+        <Breadcrumbs separator={breadcrumbSeparatar} className={breadcrumbStyles}>
+            {showPostsPageOnBreadcrumb}
+            {showPostTitleOnBreadcrumb}
         </Breadcrumbs>
     );
 };

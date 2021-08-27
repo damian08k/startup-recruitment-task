@@ -1,31 +1,34 @@
 import { useContext } from "react";
-import { Box, Button, Container, List, ListItem, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import { PostIDContext } from "../../../context/PostIDContext";
 import { PostInfoContext } from "../../../context/PostInfoContext";
 
+import { Box, Button, Container, List, ListItem, Typography } from "@material-ui/core";
+
 import useSinglePostStyles from "./useSinglePostStyles";
 
 const SinglePost = ({ posts }) => {
+    const { setPostID } = useContext(PostIDContext);
+    const { setPostTitle, setPostBody } = useContext(PostInfoContext);
+
     const {
         listElementStyles,
         postTitleStyles,
         postBodyStyles,
         showFullVersionButtonContainerStyles,
+        linkStyles,
         showFullVersionButtonStyles,
+        postsContainerStyles,
     } = useSinglePostStyles();
 
-    const { setPostID } = useContext(PostIDContext);
-    const { setPostName, setPostBody } = useContext(PostInfoContext);
-
-    const handleShowPostDetails = (id, title, body) => {
-        setPostID(id);
-        setPostName(title);
-        setPostBody(body);
+    const handleShowPostDetails = (postID, postTitle, postBody) => {
+        setPostID(postID);
+        setPostTitle(postTitle);
+        setPostBody(postBody);
     };
 
-    const showSinglePost = posts.map(({ id, title, body }) => (
+    const showPost = posts.map(({ id, title, body }) => (
         <ListItem key={id} className={listElementStyles}>
             <Typography variant="h2" className={postTitleStyles}>
                 {title}
@@ -34,7 +37,7 @@ const SinglePost = ({ posts }) => {
                 {body}
             </Typography>
             <Box component="div" className={showFullVersionButtonContainerStyles}>
-                <Link to={`/posts/${id}/comments`}>
+                <Link to={`/posts/${id}/comments`} className={linkStyles}>
                     <Button variant="outlined" onClick={() => handleShowPostDetails(id, title, body)}>
                         <Typography variant="button" className={showFullVersionButtonStyles}>
                             Full Version
@@ -46,8 +49,8 @@ const SinglePost = ({ posts }) => {
     ));
 
     return (
-        <Container maxWidth="md">
-            <List>{showSinglePost}</List>
+        <Container maxWidth="md" className={postsContainerStyles}>
+            <List>{showPost}</List>
         </Container>
     );
 };

@@ -2,12 +2,12 @@ import { makeStyles } from "@material-ui/styles";
 
 const useSinglePostStyles = makeStyles({
     listElementStyles: {
-        margin: "20px 0",
         display: "flex",
-        textAlign: "center",
         flexWrap: "wrap",
-        minWidth: "200px",
-        border: "1px solid black",
+        margin: "25px 0",
+        minWidth: "300px",
+        border: "2px solid black",
+        textAlign: "center",
 
         "& > *": {
             flexBasis: "100%",
@@ -40,8 +40,16 @@ const useSinglePostStyles = makeStyles({
         },
     },
 
+    linkStyles: {
+        textDecoration: "none",
+    },
+
     showFullVersionButtonStyles: {
         textTransform: "capitalize",
+    },
+
+    postsContainerStyles: {
+        padding: "0 5px",
     },
 });
 

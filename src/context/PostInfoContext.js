@@ -3,11 +3,11 @@ import { useState, createContext } from "react";
 export const PostInfoContext = createContext();
 
 const PostInfoProvider = ({ children }) => {
-    const [postName, setPostName] = useState("");
+    const [postTitle, setPostTitle] = useState("");
     const [postBody, setPostBody] = useState("");
 
     return (
-        <PostInfoContext.Provider value={{ postName, postBody, setPostName, setPostBody }}>
+        <PostInfoContext.Provider value={{ postTitle, postBody, setPostTitle, setPostBody }}>
             {children}
         </PostInfoContext.Provider>
     );
