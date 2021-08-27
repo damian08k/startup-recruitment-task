@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/styles";
 
 const useSinglePostStyles = makeStyles({
     listElementStyles: {
+        margin: "20px 0",
         display: "flex",
         textAlign: "center",
         flexWrap: "wrap",
@@ -12,13 +13,17 @@ const useSinglePostStyles = makeStyles({
             flexBasis: "100%",
         },
 
+        "&:first-child": {
+            margin: "0",
+        },
+
         "@media (min-width: 640px)": {
             textAlign: "left",
         },
     },
 
     postTitleStyles: {
-        fontSize: "2.5rem",
+        fontSize: "2rem",
         fontWeight: "bold",
     },
 
