@@ -38,7 +38,7 @@ const App = () => {
                                 <Route exact path="/posts">
                                     <Posts />
                                 </Route>
-                                <Route path="/posts/:id/comments">
+                                <Route path="/posts/:id">
                                     <PostDetails />
                                 </Route>
                                 <Route path="*">

@@ -37,7 +37,7 @@ const SinglePost = ({ posts }) => {
                 {body}
             </Typography>
             <Box component="div" className={showFullVersionButtonContainerStyles}>
-                <Link to={`/posts/${id}/comments`} className={linkStyles}>
+                <Link to={`/posts/${id}`} className={linkStyles}>
                     <Button variant="outlined" onClick={() => handleShowPostDetails(id, title, body)}>
                         <Typography variant="button" className={showFullVersionButtonStyles}>
                             Full Version
