@@ -1,4 +1,9 @@
+import { useContext } from "react";
 import { Box, Button, Container, List, ListItem, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+
+import { PostIDContext } from "../../../context/PostIDContext";
+import { PostInfoContext } from "../../../context/PostInfoContext";
 
 import useSinglePostStyles from "./useSinglePostStyles";
 
@@ -11,6 +16,15 @@ const SinglePost = ({ posts }) => {
         showFullVersionButtonStyles,
     } = useSinglePostStyles();
 
+    const { setPostID } = useContext(PostIDContext);
+    const { setPostName, setPostBody } = useContext(PostInfoContext);
+
+    const handleShowPostDetails = (id, title, body) => {
+        setPostID(id);
+        setPostName(title);
+        setPostBody(body);
+    };
+
     const showSinglePost = posts.map(({ id, title, body }) => (
         <ListItem key={id} className={listElementStyles}>
             <Typography variant="h2" className={postTitleStyles}>
@@ -20,11 +34,13 @@ const SinglePost = ({ posts }) => {
                 {body}
             </Typography>
             <Box component="div" className={showFullVersionButtonContainerStyles}>
-                <Button variant="outlined">
-                    <Typography variant="button" className={showFullVersionButtonStyles}>
-                        Full Version
-                    </Typography>
-                </Button>
+                <Link to={`/posts/${id}/comments`}>
+                    <Button variant="outlined" onClick={() => handleShowPostDetails(id, title, body)}>
+                        <Typography variant="button" className={showFullVersionButtonStyles}>
+                            Full Version
+                        </Typography>
+                    </Button>
+                </Link>
             </Box>
         </ListItem>
     ));
