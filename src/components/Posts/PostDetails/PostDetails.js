@@ -33,7 +33,11 @@ const Posts = () => {
         </Container>
     );
 
-    if (isLoading) {
+    if (postTitle.length === 0) {
+        const message =
+            'There is no data here. If you want to show the comments, go back to "Posts" page by using navigation.';
+        return <Error message={message} />;
+    } else if (isLoading) {
         return <Loader />;
     } else if (isError) {
         return <Error message={error.message} />;
